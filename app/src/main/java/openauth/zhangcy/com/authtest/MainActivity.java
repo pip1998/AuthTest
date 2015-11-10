@@ -1,13 +1,13 @@
 package openauth.zhangcy.com.authtest;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import yinyueba.meetstudio.com.library.YCHAuthAPI;
 
 public class MainActivity extends Activity {
 
@@ -42,12 +42,7 @@ public class MainActivity extends Activity {
 
     public void onAuth(View view){
         //auth
-        String url = String.format("yinyuba://open/oauth?pid=%s&appId=1&scope=id,nickname,age&state=1024", getPackageName());
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        intent.putExtra("pkg", getPackageName());
-        intent.putExtra("host", "yypapa.YYBInfoActivity");
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+        YCHAuthAPI api = new YCHAuthAPI();
+        api.registerApp(this, "1", "00", "userInfo");
     }
 }
