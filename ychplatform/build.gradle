@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 // 这个version是区分library版本的，因此当我们需要更新library时记得修改这个version
-version = "0.9.2"
+version = "0.9.4"
 android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
@@ -37,7 +37,7 @@ install {
             project {
                 packaging 'aar'
                 // Add your description here
-                name 'open_lib'  //项目描述
+                name 'ych_lib_test'  //项目描述
                 url siteUrl
                 // Set your license
                 licenses {
@@ -86,7 +86,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = "maven"  //发布到Bintray的那个仓库里，默认账户有四个库，我们这里上传到maven库
-        name = "open_lib"  //发布到Bintray上的项目名字
+        name = "ych_lib_test"  //发布到Bintray上的项目名字
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]
