@@ -86,7 +86,7 @@ public class YCHAuthAPI {
 
     public boolean isYCHAppInstalled(){
         try {
-            return this.context.getPackageManager().getPackageInfo("com.meetstudio.yinyueba.debug", 64) != null;
+            return this.context.getPackageManager().getPackageInfo("com.meetstudio.yinyueba", 64) != null;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -99,7 +99,7 @@ public class YCHAuthAPI {
             return 0;
         } else {
             try {
-                PackageInfo var = context.getPackageManager().getPackageInfo("com.meetstudio.yinyueba.debug", 64);
+                PackageInfo var = context.getPackageManager().getPackageInfo("com.meetstudio.yinyueba", 64);
                 return var.versionCode;
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
@@ -117,7 +117,7 @@ public class YCHAuthAPI {
             Log.i(TAG, "the ych app has not been installed");
         }else {
             try {
-                this.context.startActivity(this.context.getPackageManager().getLaunchIntentForPackage("com.meetstudio.yinyueba.debug"));
+                this.context.startActivity(this.context.getPackageManager().getLaunchIntentForPackage("com.meetstudio.yinyueba"));
                 return true;
             } catch (Exception var2) {
                 Log.i(TAG, "startActivity fail, exception = " + var2.getMessage());
