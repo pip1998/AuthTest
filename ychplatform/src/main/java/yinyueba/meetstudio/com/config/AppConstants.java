@@ -4,7 +4,7 @@ package yinyueba.meetstudio.com.config;
 public interface AppConstants {
 
 	//正式测试相应控制，1测试环境，0正式环境
-	static Boolean IS_DEBUG_MODE              =true;
+	static Boolean IS_DEBUG_MODE              =false;
 
 	//测试环境配置
 
