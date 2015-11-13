@@ -3,6 +3,8 @@ package yinyueba.meetstudio.com.library.model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import yinyueba.meetstudio.com.config.AppConstants;
+
 /**
  * 作者：chaoyongzhang on 15/11/10 16:50
  * 邮箱：zhangcy@meet-future.com
@@ -45,7 +47,7 @@ public class UserBean {
         bean.gender = object.optString("gender");
         bean.birthday = object.optString("birthday");
         bean.portrait = object.optString("portrait");
-        bean.album = object.optString("album");
+        bean.album = String.format("%s%s?id=%s", AppConstants.PLATFORM_SERVER_ATTACHMENT_URL, AppConstants.PLATFORM_API_IMAGE, object.optString("album"));
         bean.tags = object.optString("tags");
         bean.description = object.optString("description");
         bean.super_vip = object.optString("super_vip");
