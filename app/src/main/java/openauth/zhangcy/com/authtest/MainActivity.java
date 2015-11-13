@@ -43,6 +43,11 @@ public class MainActivity extends Activity {
         propertyBtn.setEnabled(apiEnable);
     }
 
+    public void onOpen(View view){
+        YCHAuthAPI api = new YCHAuthAPI(this);
+        api.openYCHApp();
+    }
+
     public void onAuth(View view){
         //auth
         YCHAuthAPI api = new YCHAuthAPI(this);
