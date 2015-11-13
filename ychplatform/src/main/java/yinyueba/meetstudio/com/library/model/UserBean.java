@@ -1,5 +1,8 @@
 package yinyueba.meetstudio.com.library.model;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * 作者：chaoyongzhang on 15/11/10 16:50
  * 邮箱：zhangcy@meet-future.com
@@ -30,19 +33,25 @@ public class UserBean {
     String city;
 
     public static UserBean parse(String json){
+        JSONObject object = null;
+        try {
+            object = new JSONObject(json).optJSONObject("user");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         UserBean bean = new UserBean();
-        bean.id = "741";
-        bean.nickname = "oooo";
-        bean.gender = "1";
-        bean.birthday = "1989-12-12";
-        bean.portrait = "7010";
-        bean.album = "7010,6345,5649,6987,7005,7006";
-        bean.tags = "古筝 钢琴 电吉他 贝斯 架子鼓";
-        bean.description = "平凡的世界";
-        bean.super_vip = "1";
-        bean.vip_expire = "2150162047";
-        bean.call_price = "1";
-        bean.city = "成都";
+        bean.id = object.optString("id");
+        bean.nickname = object.optString("nickname");
+        bean.gender = object.optString("gender");
+        bean.birthday = object.optString("birthday");
+        bean.portrait = object.optString("portrait");
+        bean.album = object.optString("album");
+        bean.tags = object.optString("tags");
+        bean.description = object.optString("description");
+        bean.super_vip = object.optString("super_vip");
+        bean.vip_expire = object.optString("vip_expire");
+        bean.call_price = object.optString("call_price");
+        bean.city = object.optString("city");
         return bean;
     }
 

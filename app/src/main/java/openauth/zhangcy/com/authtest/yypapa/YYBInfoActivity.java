@@ -8,12 +8,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import openauth.zhangcy.com.authtest.Contacts;
 import openauth.zhangcy.com.authtest.R;
 import yinyueba.meetstudio.com.library.YCHAuthAPI;
 import yinyueba.meetstudio.com.library.YCHRequestHandler;
 import yinyueba.meetstudio.com.library.model.AuthBean;
+import yinyueba.meetstudio.com.library.model.ErrorBean;
 
 public class YYBInfoActivity extends Activity {
+    private static final String TAG = "YYBInfoActivity";
     Intent intent;
     TextView textView;
     @Override
@@ -23,17 +26,20 @@ public class YYBInfoActivity extends Activity {
         intent = getIntent();
         Log.d("YYBInfoActivity", "pid = " + android.os.Process.myPid() + "errorCode = " + intent.getData().getQueryParameter("errorCode"));
         textView = (TextView) findViewById(R.id.text);
-        YCHAuthAPI auth = new YCHAuthAPI();
+        YCHAuthAPI auth = new YCHAuthAPI(this);
         auth.handleIntent(intent, new YCHRequestHandler() {
             @Override
             public void onYCHRequestSuccess(String msg) {
                 AuthBean bean = AuthBean.parse(msg);
                 textView.setText("auth result: " + bean.getToken());
+                Contacts.authBean = bean;
+                finish();
             }
 
             @Override
-            public void onYCHRequestFailed(String msg) {
-
+            public void onYCHRequestFailed(ErrorBean bean) {
+                Log.i(TAG, bean.toString());
+                finish();
             }
         });
     }

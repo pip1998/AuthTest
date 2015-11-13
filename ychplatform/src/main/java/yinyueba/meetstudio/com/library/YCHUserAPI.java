@@ -2,6 +2,8 @@ package yinyueba.meetstudio.com.library;
 
 import android.content.Context;
 
+import yinyueba.meetstudio.com.config.AppConstants;
+import yinyueba.meetstudio.com.config.AppUtils;
 import yinyueba.meetstudio.com.net.http.RequestParams;
 
 /**
@@ -11,18 +13,22 @@ import yinyueba.meetstudio.com.net.http.RequestParams;
 public class YCHUserAPI extends YCHOpenAPI {
     private String appKey;
 
-    public YCHUserAPI(Context context, String appKey, String token) {
-        super(context, appKey, token);
+    public YCHUserAPI(Context context, String appKey, String token, String userId) {
+        super(context, appKey, token, userId);
     }
 
+
     public void asyncUserInfo(String userId, YCHRequestHandler handler){
-        String url = "http://www.baidu.com";
+        String url = AppUtils.getApiUrl(AppConstants.PLATFORM_API_USER);
         RequestParams params = new RequestParams();
         params.put("userId", userId);
         requestAsync(url, params, "GET", handler);
     }
 
     public void asyncVipInfo(String userId, YCHRequestHandler handler){
-
+        String url = AppUtils.getApiUrl(AppConstants.PLATFORM_API_USER_PROPERTY);
+        RequestParams params = new RequestParams();
+        params.put("userId", userId);
+        requestAsync(url, params, "GET", handler);
     }
 }
